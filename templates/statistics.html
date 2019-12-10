@@ -10,4 +10,26 @@
 {% block body %}
 <h1>Statistics</h1>
 
+    <table>
+
+        <thead>
+        <tr>
+            <td>Method</td>
+            <td>Count</td>
+        </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>GET</td>
+                <td>{{ get_counter }}</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>{{ post_counter }}</td>
+            </tr>
+        </tbody>
+
+    </table>
+
 {% endblock body %}
