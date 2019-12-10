@@ -32,14 +32,29 @@ def request_counter():
     return render_template('request-counter.html')
 
 
-@app.route('/statistics')
+@app.route('/statistics', methods=['GET', 'POST'])
 def statistics():
-    global GET_COUNTER, POST_COUNTER, DELETE_COUNTER, PUT_COUNTER
-    return render_template('statistics.html',
-                           get_counter=GET_COUNTER,
-                           post_counter=POST_COUNTER,
-                           put_counter=PUT_COUNTER,
-                           delete_counter=DELETE_COUNTER)
+    global GET_COUNTER, POST_COUNTER, PUT_COUNTER, DELETE_COUNTER
+    if request.method == 'GET':
+        return render_template('statistics.html',
+                               get_counter=GET_COUNTER,
+                               post_counter=POST_COUNTER,
+                               put_counter=PUT_COUNTER,
+                               delete_counter=DELETE_COUNTER)
+    elif request.method == 'POST':
+        write_to_file()
+        return render_template('statistics.html',
+                               get_counter=GET_COUNTER,
+                               post_counter=POST_COUNTER,
+                               put_counter=PUT_COUNTER,
+                               delete_counter=DELETE_COUNTER)
+
+
+def write_to_file():
+    global GET_COUNTER, POST_COUNTER, PUT_COUNTER, DELETE_COUNTER
+    data_string = 'GET:' + str(GET_COUNTER) + '\n' + 'POST: ' + str(POST_COUNTER) + '\n' + 'DELETE: ' + str(DELETE_COUNTER) + '\n' + 'PUT: ' + str(PUT_COUNTER)
+    with open('request_counts.txt', 'w') as file:
+        file.write(data_string)
 
 
 if __name__ == '__main__':
