@@ -12,6 +12,12 @@
 </head>
 
 <body>
+    <a href="{{ url_for('home') }}">Home</a> <span>  </span>
+    <a href="{{ url_for('request_counter') }}">Request counter</a> <span>  </span>
+    <a href="{{ url_for('statistics') }}">Statistics</a>
+
+
+
 
     {% block body %}{% endblock body %}
 
