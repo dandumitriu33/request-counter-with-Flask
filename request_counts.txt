@@ -1,4 +1,4 @@
-GET:6
-POST: 5
+GET:15
+POST: 8
 DELETE: 0
 PUT: 0
